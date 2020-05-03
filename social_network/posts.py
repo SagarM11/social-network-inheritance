@@ -10,7 +10,7 @@ class Post(object):
       self.timestamp = timestamp
       self.user = None
    def set_user(self, user):
-      self.user = user
+      setattr(self,user,user)
       return(self.user)
 
 
@@ -30,7 +30,7 @@ class PicturePost(Post):  # Inherit properly
     return("@{} {}: {}\n\t{}\n\t{}".format(super(TextPost,self).first_name, super(TextPost,self).last_name, super(TextPost,self).text, self.image, super(TextPost,self).timestamp)
 
 
-class CheckInPost(...):  # Inherit properly
+class CheckInPost(Post):  # Inherit properly
   def __init__(self, text, latitude, longitude, timestamp=None):
     super(CheckInPost,self).__init__(text,timestamp)
     self.latitude = latitude
