@@ -8,10 +8,18 @@ class User(object):
         self.following = []
 
     def add_post(self, post):
-        return(self.list_posts.append(post))
-
-    def get_timeline(self):
+        post.set_user(User)
+        self.list_posts.append(post)
         return(self.list_posts)
 
+    def get_timeline(self):
+        all_posts = []
+        for u in self.following:
+            for p in u.list_posts:
+                all_posts.append(p)
+        return(all_posts)
+            
     def follow(self, other):
-        return(self.following.append(other))
+        if other in self.following:
+            self.following.append(other)
+        return(self.following)
